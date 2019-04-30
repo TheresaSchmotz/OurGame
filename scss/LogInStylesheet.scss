@@ -2,20 +2,19 @@ html,
 
 
 
-body{
+body {
     height: 100%;
     font-family: 'Josefin Slab', serif;
-    background-image: url("palm_tree_branches_pastel_128581_2048x1152.jpg");
+    background-image: url("../img/palm_tree_branches_pastel_128581_2048x1152.jpg");
     background-size: auto auto;
     margin: 0;
 }
-.h3{
+
+.text-center{
     font-family: 'Josefin Slab', serif;
     font-size: 20px;
-    fon
-}
-.header text-center{
-    font-size: 36px;
+    font-weight: bold;
+    padding-top: 60px;
 
 }
 
@@ -39,7 +38,7 @@ body{
 .passwordField1{
 
 }
-<!-- button -->
+/* button */
 .btn btn-primary{
 
 }
