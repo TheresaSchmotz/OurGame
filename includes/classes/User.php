@@ -7,7 +7,7 @@
 class User extends Database
 {
 	public $username = '';
-	public $id = '';
+	public $id = ''; /*keine ID?*/
 
 	public $isLoggedIn = false;
 
@@ -38,7 +38,7 @@ class User extends Database
 	{
 		parent::__destruct();
 
-		$_SESSION[get_class($this).'Ship'] = $this->shipIt();
+		$_SESSION[get_class($this).'Ship'] = $this->shipIt(); /*??*/
 	}
 
 	/**
@@ -85,9 +85,9 @@ class User extends Database
 
 	public function login($username, $password)
 	{
-		$sql = "SELECT `id`,`password` FROM `user` WHERE `name`='" . $this->escapeString($username) . "'";
+		$sql = "SELECT `PlayerName`,`Password` FROM `user` WHERE `PlayerName`='" . $this->escapeString($username) . "'";
 		$result = $this->query($sql);
-
+N
 
 		if($this->numRows($result) == 0)
 		{
@@ -101,7 +101,7 @@ class User extends Database
 		if(password_verify($password, $row->password))
 		{
 			$this->username = $username;
-			$this->id = $row->id;
+			$this->id = $row->PlayerName;
 			$this->isLoggedIn = true;
 
 			return true;
@@ -114,7 +114,7 @@ class User extends Database
 	public static function getById($id)
 	{
 		$id = intval($id);
-		$sql = "SELECT * FROM `user` WHERE `id`=".$id;
+		$sql = "SELECT * FROM `player` WHERE `PlayerName`=".$id;
 
 		$db = new Database();
 		$result = $db->query($sql);
@@ -126,7 +126,7 @@ class User extends Database
 			$user = new User();
 
 			$user->username = $data['username'];
-			$user->id = $id;
+			$user->id = $id; $data['username'];
 
 			return $user;
 		}
@@ -177,7 +177,7 @@ class User extends Database
 		$db = new Database();
 
 		//check if user exists...
-		$sql = "SELECT COUNT(`id`) AS num FROM `user` WHERE `name`='".$db->escapeString($username)."'";
+		$sql = "SELECT COUNT(`PlayerName`) AS num FROM `player` WHERE `PlayerName`='".$db->escapeString($username)."'";
 		$result = $db->query($sql);
 
 		$row = $db->fetchObject($result);
@@ -197,7 +197,7 @@ class User extends Database
 		$username = $db->escapeString($data['username']);
 		$password = password_hash($db->escapeString($data['password']), PASSWORD_BCRYPT);
 
-		$sql = "INSERT INTO `user`(`name`,`password`) VALUES('".$username."','".$password."')";
+		$sql = "INSERT INTO `player`(`PlayerName`,`Password`) VALUES('".$username."','".$password."')";
 		$db->query($sql);
 	}
 
