@@ -85,7 +85,7 @@ class User extends Database
 
 	public function login($username, $password)
 	{
-		$sql = "SELECT `PlayerName`,`Password` FROM `user` WHERE `PlayerName`='" . $this->escapeString($username) . "'";
+		$sql = "SELECT `PlayerName`,`Password` FROM `player` WHERE `PlayerName`='" . $this->escapeString($username) . "'";
 		$result = $this->query($sql);
 N
 
